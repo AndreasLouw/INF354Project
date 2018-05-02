@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="INF354" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=.;Initial Catalog=INF354;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="INF354ConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.tblClient" Member="tblClients">
+    <Type Name="tblClient">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Lastname" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="email" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="titleID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="tblClient_tblClientFurniture" Member="tblClientFurnitures" ThisKey="id" OtherKey="clientId" Type="tblClientFurniture" />
+      <Association Name="tblTitle_tblClient" Member="tblTitle" ThisKey="titleID" OtherKey="id" Type="tblTitle" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblClientFurniture" Member="tblClientFurnitures">
+    <Type Name="tblClientFurniture">
+      <Column Name="clientId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="furnitureId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Association Name="tblClient_tblClientFurniture" Member="tblClient" ThisKey="clientId" OtherKey="id" Type="tblClient" IsForeignKey="true" />
+      <Association Name="tblFurniture_tblClientFurniture" Member="tblFurniture" ThisKey="furnitureId" OtherKey="id" Type="tblFurniture" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblFurniture" Member="tblFurnitures">
+    <Type Name="tblFurniture">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="typeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="tblFurniture_tblClientFurniture" Member="tblClientFurnitures" ThisKey="id" OtherKey="furnitureId" Type="tblClientFurniture" />
+      <Association Name="tblFurnitureType_tblFurniture" Member="tblFurnitureType" ThisKey="typeID" OtherKey="id" Type="tblFurnitureType" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblFurnitureType" Member="tblFurnitureTypes">
+    <Type Name="tblFurnitureType">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Type" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Association Name="tblFurnitureType_tblFurniture" Member="tblFurnitures" ThisKey="id" OtherKey="typeID" Type="tblFurniture" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblTitle" Member="tblTitles">
+    <Type Name="tblTitle">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="VarChar(3) NOT NULL" CanBeNull="false" />
+      <Association Name="tblTitle_tblClient" Member="tblClients" ThisKey="id" OtherKey="titleID" Type="tblClient" />
+    </Type>
+  </Table>
+</Database>
