@@ -25,7 +25,6 @@
                 <asp:GridView ID="Client" EmptyDataText="No records have been added." runat="server" AutoGenerateColumns="False" DataSourceID="addclient" DataKeyNames="id" CellPadding="4" ForeColor="#333333" GridLines="None">
                     <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                     <Columns>
-                        <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
                         <asp:BoundField DataField="id" HeaderText="id" SortExpression="id" InsertVisible="False" ReadOnly="True" />
                         <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />
                         <asp:BoundField DataField="Lastname" HeaderText="Lastname" SortExpression="Lastname" />
@@ -45,93 +44,66 @@
                     <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                 </asp:GridView>
 
-                <asp:FormView ID="clientReg" runat="server" CellPadding="4" DataKeyNames="id" DataSourceID="addclient" DefaultMode="Insert" ForeColor="#333333" OnPageIndexChanging="clientReg_PageIndexChanging">
-                    <EditItemTemplate>
-                        id:
-                        <asp:Label ID="idLabel1" runat="server" Text='<%# Eval("id") %>' />
-                        <br />
-                        Name:
-                        <asp:TextBox ID="NameTextBox" runat="server" Text='<%# Bind("Name") %>' />
-                        <br />
-                        Lastname:
-                        <asp:TextBox ID="LastnameTextBox" runat="server" Text='<%# Bind("Lastname") %>' />
-                        <br />
-                        email:
-                        <asp:TextBox ID="emailTextBox" runat="server" Text='<%# Bind("email") %>' />
-                        <br />
-                        titleID:
-                        <asp:TextBox ID="titleIDTextBox" runat="server" Text='<%# Bind("titleID") %>' />
-                        <br />
-                        <asp:LinkButton ID="UpdateButton" runat="server" CausesValidation="True" CommandName="Update" Text="Update" />
-                        &nbsp;<asp:LinkButton ID="UpdateCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
-                    </EditItemTemplate>
-
-                    <EditRowStyle BackColor="#999999" />
-                    <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-                    <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-
-                    <InsertItemTemplate>
-                        Name:
-                        <asp:TextBox ID="NameTextBox" runat="server" Text='<%# Bind("Name") %>' />
-                        <br />
-                        Lastname:
-                        <asp:TextBox ID="LastnameTextBox" runat="server" Text='<%# Bind("Lastname") %>' />
-                        <br />
-                        email:
-                        <asp:TextBox ID="emailTextBox" runat="server" Text='<%# Bind("email") %>' />
-                        <br />
-                        titleID:
-                        <asp:TextBox ID="titleIDTextBox" runat="server" Text='<%# Bind("titleID") %>' />
-                        <br />
-
-                        <asp:LinkButton ID="InsertButton" runat="server" CausesValidation="True" CommandName="Insert" Text="Insert" />
-                        &nbsp;<asp:LinkButton ID="InsertCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
-                    </InsertItemTemplate>
-
-                    <ItemTemplate>
-                        id:
-                        <asp:Label ID="idLabel" runat="server" Text='<%# Eval("id") %>' />
-                        <br />
-                        Name:
-                        <asp:Label ID="NameLabel" runat="server" Text='<%# Bind("Name") %>' />
-                        <br />
-                        Lastname:
-                        <asp:Label ID="LastnameLabel" runat="server" Text='<%# Bind("Lastname") %>' />
-                        <br />
-                        email: <asp:Label ID="emailLabel" runat="server" Text='<%# Bind("email") %>' />
-                        <br />
-                        titleID:
-                        <asp:Label ID="titleIDLabel" runat="server" Text='<%# Bind("titleID") %>' />
-                        <br />
-                        <asp:LinkButton ID="EditButton" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit" />
-                        &nbsp;<asp:LinkButton ID="DeleteButton" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete" />
-                        &nbsp;<asp:LinkButton ID="NewButton" runat="server" CausesValidation="False" CommandName="New" Text="New" />
-                    </ItemTemplate>
-
-
-                    <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
-                    <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
-                </asp:FormView>
-
+                <br />
+    <br />
+    <asp:Panel ID="Panel1" runat="server" GroupingText="Delete" Height="122px" Width="281px">
+        <asp:Label ID="lable" runat="server" Text="ID"></asp:Label>
+        <asp:TextBox ID="txtId" runat="server" OnTextChanged="txtId_TextChanged"></asp:TextBox>
+        <br />
+        <br />
+        <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Delete" />
+    </asp:Panel>
+    <br />
+    <br />
+    <asp:Panel ID="Panel2" runat="server" GroupingText="Add Client" Height="232px" Width="305px">
+        Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:TextBox ID="txtName" runat="server"></asp:TextBox>
+        <br />
+        Lastname:
+        <asp:TextBox ID="txtLastname" runat="server" Width="120px"></asp:TextBox>
+        <br />
+        Email:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
+        <br />
+        Title:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:DropDownList ID="ddTitle" runat="server" DataSourceID="SqlDataSource1" DataTextField="Title" DataValueField="id">
+        </asp:DropDownList>
+        <br />
+        <br />
+        <asp:Button ID="btnRegister" runat="server" OnClick="btnRegister_Click" Text="Regiser" />
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:INF354ConnectionString %>" SelectCommand="SELECT * FROM [tblTitle]"></asp:SqlDataSource>
+    </asp:Panel>
+    <br />
+    <asp:Panel ID="Panel3" runat="server" GroupingText="Update" Height="186px" Width="303px">
+        Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:TextBox ID="txtNameEd" runat="server"></asp:TextBox>
+        <br />
+        Lastname:
+        <asp:TextBox ID="txtLnEd" runat="server"></asp:TextBox>
+        <br />
+        old Email:&nbsp;
+        <asp:TextBox ID="txtOldEmail" runat="server"></asp:TextBox>
+        <br />
+        new Emal:
+        <asp:TextBox ID="txtEmailEd" runat="server"></asp:TextBox>
+        <br />
+        Title:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:DropDownList ID="ddTitleEd" runat="server" DataSourceID="SqlDataSource1" DataTextField="Title" DataValueField="id">
+        </asp:DropDownList>
+        <br />
+        <asp:Button ID="btnEdit" runat="server" OnClick="btnEdit_Click" Text="Edit" />
+        <br />
+    </asp:Panel>
+    <br />
+&nbsp;&nbsp;
+    <br />
+    <br />
     <br />
     <br />
     <asp:Label ID="lblError" runat="server" Text="err"></asp:Label>
-    <br />
-    <br />
-    Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="txtName" runat="server"></asp:TextBox>
-    <br />
-    Lastname:&nbsp;&nbsp;&nbsp;
-    <asp:TextBox ID="txtLastname" runat="server"></asp:TextBox>
-    <br />
-    email:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
-    <br />
-    title:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <asp:DropDownList ID="ddTitle" runat="server" DataSourceID="SqlDataSource1" DataTextField="Title" DataValueField="id">
-    </asp:DropDownList>
-&nbsp;<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:INF354ConnectionString %>" SelectCommand="SELECT * FROM [tblTitle]"></asp:SqlDataSource>
-    <br />
-    <asp:Button ID="btnRegister" runat="server" OnClick="btnRegister_Click" Text="Regiser" />
+    :<br />
+    &nbsp;&nbsp;&nbsp;
+&nbsp;<br />
     <br />
     <br />
 
