@@ -75,8 +75,23 @@
     <br />
 &nbsp;&nbsp;
     <br />
+    <asp:Panel ID="Panel4" runat="server" GroupingText="Search" Height="107px" Width="299px">
+        Name to search:&nbsp;&nbsp;
+        <asp:TextBox ID="txtNameSearch" runat="server"></asp:TextBox>
+        <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <br />
+        <asp:Button ID="btnSearch" runat="server" OnClick="btnSearch_Click" Text="Button" />
+        &nbsp;
+        <asp:Button ID="btnRevert" runat="server" OnClick="btnEdit_Click" Text="Revert" />
+        <br />
+    </asp:Panel>
     <br />
+    <asp:DataList ID="DataList1" runat="server">
+    </asp:DataList>
     <br />
+    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False">
+    </asp:GridView>
     <br />
     <asp:Label ID="lblError" runat="server" Text="err"></asp:Label>
     :<br />&nbsp;&nbsp;&nbsp;

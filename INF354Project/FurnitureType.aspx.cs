@@ -41,7 +41,7 @@ namespace INF354Project
             tblFurnitureType ty = new tblFurnitureType();
             ty.Type = type;
 
-            db.tblTitles.InsertOnSubmit(ty); // basically the query and where it souuld execute
+            db.tblFurnitureTypes.InsertOnSubmit(ty); // basically the query and where it souuld execute
             db.SubmitChanges(); // execute the query on the table
             Type.DataBind(); // to refresh table
         }

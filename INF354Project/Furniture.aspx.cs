@@ -20,11 +20,11 @@ namespace INF354Project
 
             var db = new DataClasses1DataContext();
 
-            var deleteFurniture= from furniture in db.tblFurnitures where furniture.id == id select client;
+            var deleteFurniture= from furniture in db.tblFurnitures where furniture.id == id select furniture;
 
             if (deleteFurniture.Any())
             {
-                db.tblClients.DeleteOnSubmit(deleteFurniture.First());
+                db.tblFurnitures.DeleteOnSubmit(deleteFurniture.First());
                 db.SubmitChanges();
                 Furniture.DataBind();
             }
@@ -72,6 +72,25 @@ namespace INF354Project
                 db.SubmitChanges(); // execute the query on the table
                 Furniture.DataBind(); // to refresh table
             }
+        }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            string search = txtNameSearch.Text;
+            var db = new DataClasses1DataContext();
+
+            //var obj = from fur in db.tblFurnitures where search.All(f => fur.Name.Contains(f)) select fur;
+            var obj2 = db.tblFurnitures.Where(s => db.tblFurnitures.Select(so => so.Name).Contains(search));
+
+            Furniture.DataSourceID = null;
+            Furniture.DataSource = obj2;
+
+            Furniture.DataBind();
+        }
+
+        protected void txtId_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
