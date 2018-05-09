@@ -77,5 +77,10 @@ namespace INF354Project
                 ClFur.DataBind(); // to refresh table
             }
         }
+
+        protected void txtId_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

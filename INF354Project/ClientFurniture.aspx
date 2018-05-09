@@ -5,7 +5,7 @@
     <!-- for adding client -->
 
                 <asp:SqlDataSource ID="sdsClFur" runat="server" ConnectionString="<%$ ConnectionStrings:INF354ConnectionString %>" SelectCommand="SELECT * FROM [tblClientFurniture]"></asp:SqlDataSource>
-    <asp:GridView ID="ClFur" EmptyDataText="No records have been added." runat="server" AutoGenerateColumns="False" DataSourceID="sdsFurniture" CellPadding="4" ForeColor="#333333" GridLines="None">
+    <asp:GridView ID="ClFur" EmptyDataText="No records have been added." runat="server" AutoGenerateColumns="False" DataSourceID="sdsClFur" CellPadding="4" ForeColor="#333333" GridLines="None">
         <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
         <Columns>
             <asp:BoundField DataField="clientId" HeaderText="clientId" SortExpression="clientId" />
