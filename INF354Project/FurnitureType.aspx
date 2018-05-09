@@ -43,7 +43,7 @@
     <br />
     <asp:Panel ID="Panel2" runat="server" GroupingText="Add Type" Height="114px" Width="305px">
         Type:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:TextBox ID="txtType" runat="server"></asp:TextBox>
+        <asp:TextBox ID="txtType" runat="server" OnTextChanged="txtType_TextChanged"></asp:TextBox>
 &nbsp;<br />
         <br />
         <asp:Button ID="btnAdd" runat="server" OnClick="btnRegister_Click" Text="Add" />
