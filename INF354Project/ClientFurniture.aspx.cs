@@ -70,7 +70,7 @@ namespace INF354Project
                 foreach (var cfur in clFurUpdatequerry)
                 {
                     cfur.clientId = newcID;
-                    cfur.furnitureId = newfID
+                    cfur.furnitureId = newfID;
                 }
 
                 db.SubmitChanges(); // execute the query on the table
