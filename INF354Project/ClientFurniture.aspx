@@ -7,11 +7,6 @@
                 <asp:SqlDataSource ID="sdsClFur" runat="server" ConnectionString="<%$ ConnectionStrings:INF354ConnectionString %>" SelectCommand="SELECT * FROM [tblClientFurniture]"></asp:SqlDataSource>
     <asp:GridView ID="ClFur" EmptyDataText="No records have been added." runat="server" AutoGenerateColumns="False" DataSourceID="sdsFurniture" CellPadding="4" ForeColor="#333333" GridLines="None">
         <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
-        <Columns>
-            <asp:BoundField DataField="clientId" HeaderText="clientId" SortExpression="clientId" />
-            <asp:BoundField DataField="furnitureId" HeaderText="furnitureId" SortExpression="furnitureId" />
-            <asp:BoundField DataField="date" HeaderText="date" SortExpression="date" />
-        </Columns>
         <EditRowStyle BackColor="#999999" />
         <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
         <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
