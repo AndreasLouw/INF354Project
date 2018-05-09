@@ -69,5 +69,15 @@ namespace INF354Project
                 Type.DataBind(); // to refresh table
             }
         }
+
+        protected void txtId_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void txtType_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
